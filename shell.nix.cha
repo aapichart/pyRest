@@ -1,0 +1,27 @@
+with (import <nixpkgs> {});
+let
+    myPythonPkgs = python-packages: with python-packages; [
+    click
+    sqlalchemy
+    requests
+    flask
+    # other python packages you want
+  ];
+  python-with-my-packages = python39.withPackages myPythonPkgs;
+in {
+    devshell = pkgs.mkShell {
+        name = "pyRest";
+        version = "1.0";
+        buildInputs = [
+            python-with-my-packages
+        ];
+        shellHook = ''
+        mkdir -p .nix-node
+        export NODE_PATH=$PWD/.nix-node
+        export NPM_CONFIG_PREFIX=$PWD/.nix-node
+        export PATH=$NODE_PATH/bin:$PATH
+        export PIP="pip3"
+        '';
+    };
+}
+

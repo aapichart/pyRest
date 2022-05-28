@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %} Coupon Home {% endblock %}
+{% block content %} 
+<link rel="stylesheet" href="../static/mytable.css">
+<script src="../static/tools.js"></script>
+<button class="btn btn-secondary" onclick="myFunction1()">Promotion</button>
+<button class="btn btn-secondary" onclick="myFunction2()">Menu</button>
+<button class="btn btn-secondary" onclick="myFunction3()">History</button>
+<button class="btn btn-secondary" onclick="myFunction4()">Roll</button>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+            <p id=content2> </p>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<script>
+function myFunction1() {
+  myList = {{data1|tojson}};
+  myObj = JSON.parse(myList);
+  CreateTableFromJSON("content2",myObj.message);
+}
+function myFunction2() {
+  myList = {{data2|tojson}};
+  CreateTableFromJSON("content2",myList);
+}
+function myFunction3() {
+// document.getElementById("content2").innerHTML={{data3|tojson}};
+  myList = [{{data3|tojson}}];
+  CreateTableFromJSON("content2",myList);
+}
+function myFunction4() {
+//  document.getElementById("content2").innerHTML={{data4|tojson}};
+  myList = [{{data4|tojson}}];
+  CreateTableFromJSON("content2",myList);
+}
+</script>
+{% endblock %}

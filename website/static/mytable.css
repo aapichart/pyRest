@@ -1,0 +1,23 @@
+th, td, p, input {
+    font:14px Verdana;
+}
+table, th, td 
+{
+    border: solid 2px #DDD;
+    border-collapse: collapse;
+    padding: 2px 3px;
+    text-align: center;
+}
+th {
+    font-weight:bold;
+}
+table.table-fit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+table.table-fit thead th, table.table-fit tfoot th {
+    width: auto !important;
+}
+table.table-fit tbody td, table.table-fit tfoot td {
+    width: auto !important;
+}

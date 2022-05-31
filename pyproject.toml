@@ -26,6 +26,7 @@ zipp = "3.8.0"
 python-dotenv = "^0.20.0"
 SQLAlchemy-Utils = "^0.38.2"
 psycopg2-binary = "^2.9.3"
+PyJWT = "^2.4.0"
 
 [tool.poetry.dev-dependencies]
 

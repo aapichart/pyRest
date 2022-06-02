@@ -18,23 +18,27 @@
 </div>
 <script>
 function myFunction1() {
-  myList = {{data1|tojson}};
-  myObj = JSON.parse(myList);
-  CreateTableFromJSON("content2",myObj.message);
 }
 function myFunction2() {
-  myList = {{data2|tojson}};
-  CreateTableFromJSON("content2",myList);
 }
 function myFunction3() {
-// document.getElementById("content2").innerHTML={{data3|tojson}};
-  myList = [{{data3|tojson}}];
-  CreateTableFromJSON("content2",myList);
 }
 function myFunction4() {
-//  document.getElementById("content2").innerHTML={{data4|tojson}};
-  myList = [{{data4|tojson}}];
-  CreateTableFromJSON("content2",myList);
 }
 </script>
 {% endblock %}
+//  myList = {{data1|tojson}};
+//  myObj = JSON.parse(myList);
+//  CreateTableFromJSON("content2",myObj.message); 
+
+
+//  myList = {{data2|tojson}};
+//  CreateTableFromJSON("content2",myList);
+
+//  myList = [{{data3|tojson}}];
+//  CreateTableFromJSON("content2",myList);
+
+//  document.getElementById("content2").innerHTML={{data4|tojson}};
+
+//  myList = [{{data4|tojson}}];
+//  CreateTableFromJSON("content2",myList);

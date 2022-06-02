@@ -28,18 +28,18 @@ def login():
             # add token to headers before going into every end-points
             hearders = {'Content-Type': 'application/json', 'x-access-token': token['token']}
             data = token
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", user_is_authenticated=True)
         messagestr = 'Incorrect Password!'
-    return render_template("login.html", messagestr=messagestr)
+    return render_template("login.html", messagestr=messagestr, user_is_authenticated=False )
 
 @auth.route('/logout')
 @token_required
 def logout(current_user):
 
-    return render_template("logout.html")
+    return render_template("logout.html", user_is_authenticated=True)
 
 @auth.route('/signup')
 def signUp():
-    return render_template("signup.html")
+    return render_template("signup.html", user_is_authenticated=False)
 
 

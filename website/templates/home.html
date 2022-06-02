@@ -7,12 +7,14 @@
      Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. </p>
 {% endblock %}
 {% block back_content %}
-<div class="container-fluid" id="side-container">
-    <div class="row">
-            <a class="" align="center" href="signup">Sign-Up</a>
+{% if not user_is_authenticated %}
+    <div class="container-fluid" id="side-container">
+        <div class="row">
+                <a class="" align="center" href="signup">Sign-Up</a>
+        </div>
+        <div class="row">
+                <a class="" align="center" href="login">login</a>
+        </div>    
     </div>
-    <div class="row">
-            <a class="" align="center" href="login">login</a>
-    </div>    
-</div>
+{% endif %}
 {% endblock %}

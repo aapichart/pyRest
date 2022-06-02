@@ -1,40 +1,18 @@
 {% extends "base.html" %}
-{% block title %} Coupon Home {% endblock %}
-{% block content %} 
-<link rel="stylesheet" href="../static/mytable.css">
-<script src="../static/tools.js"></script>
-<button class="btn btn-secondary" onclick="myFunction1()">Promotion</button>
-<button class="btn btn-secondary" onclick="myFunction2()">Menu</button>
-<button class="btn btn-secondary" onclick="myFunction3()">History</button>
-<button class="btn btn-secondary" onclick="myFunction4()">Roll</button>
-<br />
-<br />
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-            <p id=content2> </p>
+{% block title %} Dashboard {% endblock %}
+{% block front_content %}
+{% endblock %}
+{% block content %}
+    <p> Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
+     Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat. </p>
+{% endblock %}
+{% block back_content %}
+<div class="container-fluid" id="side-container">
+    <div class="row">
+            <a class="" align="center" href="signup">Sign-Up</a>
     </div>
-    <div class="col-md-1"></div>
+    <div class="row">
+            <a class="" align="center" href="login">login</a>
+    </div>    
 </div>
-<script>
-function myFunction1() {
-  myList = {{data1|tojson}};
-  myObj = JSON.parse(myList);
-  CreateTableFromJSON("content2",myObj.message);
-}
-function myFunction2() {
-  myList = {{data2|tojson}};
-  CreateTableFromJSON("content2",myList);
-}
-function myFunction3() {
-// document.getElementById("content2").innerHTML={{data3|tojson}};
-  myList = [{{data3|tojson}}];
-  CreateTableFromJSON("content2",myList);
-}
-function myFunction4() {
-//  document.getElementById("content2").innerHTML={{data4|tojson}};
-  myList = [{{data4|tojson}}];
-  CreateTableFromJSON("content2",myList);
-}
-</script>
 {% endblock %}

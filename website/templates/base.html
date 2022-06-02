@@ -17,15 +17,29 @@
           <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
             <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/signup">Sign-Up</a>
             <a class="nav-link" href="/logout">Logout</a>
+            <a class="nav-link" href="/signup">Sign-Up</a>
           </div>
         </div>
       </div>
     </nav>
     <br />
     <div class=container-fluid>
-        {% block content %} This is a content!! {% endblock %}
+        <div class="row">
+            {% block outmessage %}
+            {% endblock outmessage %}
+        </div>
+        <div class="row">
+            <div class="col col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1 col-1">
+                {% block front_content %}{% endblock %}
+            </div>
+            <div class="col col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9 col-9">
+                {% block content %} This is a content!! {% endblock %}
+            </div>
+            <div class="col col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
+                {% block back_content %}{% endblock %}
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>

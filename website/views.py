@@ -1,10 +1,14 @@
-from flask import Blueprint, json, render_template, request
+from flask import Blueprint, render_template 
 import requests
 
 views = Blueprint('views', __name__)
 
 @views.route('/', methods = ['GET'])
 def home():
+    return render_template("home.html")
+
+@views.route('/users')
+def users():
     data = requests.get('http://127.0.0.1:5000/users')
     data2in = [ 
                 {"name": "Pakintas", "score": "3.5", "addr":"139/1"},

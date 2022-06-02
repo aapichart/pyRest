@@ -10,11 +10,14 @@ class Config:
     FLASK_ENV = 'development'
     TESTING = True
     # Using for authentication between sever tier
-    SECRET_KEY = 'Pamelo'
+    SECRET_KEY = environ.get('SECRET_KEY') 
     # Using TOKEN_TIMEOUT for setting token life (in minutes) after login
     TOKEN_TIMEOUT = 480
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
+    # Using these data for contact webapi
+    WEB_API_IP = environ.get('WEB_API_IP')
+    WEB_API_PORT = environ.get('WEB_API_PORT')
 
     # for Database
     SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')

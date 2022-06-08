@@ -1,32 +1,30 @@
-from flask.helpers import url_for
-from flask.templating import render_template
-from werkzeug.utils import redirect
 from .globalTools import req_engine
 from flask import current_app 
-from sqlalchemy import create_engine 
 from flask import request
 from flask import jsonify
 from os import environ
 from functools import wraps
 import hashlib
-import jwt, json
+import jwt 
 
+# This function will decode Bearer token for payload inside, before getting into each end point
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = None
-        if 'x-access-token' in request.headers:
-            token = request.headers['x-access-token']
-
+        token = ''
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization']
         if not token:
             return jsonify({'message': 'Token is missing!'}) 
         try:
             data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=["HS256"])
-            current_user = queryCurrentUser(data['id'])
+            current_userid = data['id']
+            current_username = data['username']
+            current_iat = data['iat']
         except:
             return jsonify({'message': 'Token is invalid!'}), 401
         
-        return f(current_user, *args, **kwargs)
+        return f(current_userid, current_username, current_iat, *args, **kwargs)
     return decorated
 
 def hashpassPrepare(inPassword):

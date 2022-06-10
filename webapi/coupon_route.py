@@ -1,5 +1,7 @@
 from .controls.couponCtl import queryCoupons 
 from flask import Blueprint
+from flask_jwt_extended.view_decorators import jwt_required 
+from flask_jwt_extended import get_jwt_identity
 from webapi.controls.authCtl import token_required
 
 coupon_web_api = Blueprint('coupon_web_api', __name__)
@@ -15,7 +17,8 @@ def after_request(response):
     return response
 
 @coupon_web_api.route('/coupons/<user_id>', methods=['GET'])
-@token_required
-def query_all_coupons(current_user, user_id):
+@jwt_required()
+def query_all_coupons():
+    #  s is already json 
     s = queryCoupons(user_id)
     return s 

@@ -1,6 +1,8 @@
+from flask_cors.decorator import cross_origin
 from flask import Blueprint, request, make_response
 from flask.json import jsonify
 from flask import render_template
+from flask_cors import cross_origin
 
 from werkzeug.wrappers import response
 from .models.users import Users
@@ -22,9 +24,9 @@ def after_request(response):
     return response
 
 @auth_web_api.route('/login', methods=['POST'])
+@cross_origin(origins='localhost',headers=['Content-Type','Authorization'])
 def login():
     auth = request.authorization
-    
     if not auth or not auth.username or not auth.password:
         return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required!"'})
     s = queryUserByName(auth.username)
@@ -33,6 +35,7 @@ def login():
     inId = s['data'][0]['id']
     inUsername = s['data'][0]['username']
     inPassword = s['data'][0]['password']
+    print(inUsername)
     hashpass = hashpassPrepare(auth.password)
     if hashpass == inPassword:
         #  if user is done authentication, we have to forward him to home pages by putting token in request headers
@@ -43,7 +46,8 @@ def login():
         set_access_cookies(response, access_token)
         set_refresh_cookies(response, refresh_token)
         return response
-    return make_response({'message': "Password is incorrect!!", "token":""}, 401, {'WWW-Authenticate': 'Basic realm="Login required!"'}) 
+    response = make_response({'message': "Password is incorrect!!", "token":""}, 401, {'WWW-Authenticate': 'Basic realm="Login required!"'}) 
+    return response
 
 @auth_web_api.route('/logout', methods=['GET'])
 @jwt_required()
